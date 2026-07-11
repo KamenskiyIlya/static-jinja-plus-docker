@@ -1,0 +1,41 @@
+# StaticJinjaPlus Docker Port
+
+This repository is a port of the [StaticJinjaPlus](https://github.com/MrDave/StaticJinjaPlus) project. It contains Dockerfiles to build StaticJinjaPlus images.
+
+Requirements:
+- Docker installed on your system.
+
+## Available base images
+
+- `Dockerfile.ubuntu` — based on Ubuntu 22.04 (larger but more compatible)
+- `Dockerfile.slim` — based on python:3.11-slim (smaller size)
+
+## Build instructions
+
+You can build any version by specifying the variable `REPO_URL`. Use links to archives of various versions from [original repository](https://github.com/MrDave/StaticJinjaPlus/tags), or main branch archive [url](https://github.com/MrDave/StaticJinjaPlus/archive/refs/heads/main.tar.gz).
+
+### Build with Ubuntu
+```bash
+docker build -t image_name:your_image_tag \
+  -f Dockerfile.ubuntu \
+  --build-arg REPO_URL=https://github.com/MrDave/StaticJinjaPlus/archive/refs/tags/0.1.1.tar.gz \
+  .
+```
+
+### Build with python-slim
+
+```bash
+docker build -t image_name:your_image_tag \
+  -f Dockerfile.slim \
+  --build-arg REPO_URL=https://github.com/MrDave/StaticJinjaPlus/archive/refs/tags/0.1.1.tar.gz \
+  .
+```
+
+### Build last develop update
+
+```bash
+docker build -t image_name:your_image_tag \
+  -f Dockerfile.slim \
+  --build-arg REPO_URL=https://github.com/MrDave/StaticJinjaPlus/archive/refs/heads/main.tar.gz \
+  .
+```
